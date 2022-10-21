@@ -1,4 +1,5 @@
 - name: Set user name
+  become_user: "{{ base_user }}"
   tags: always, customization, git
   git_config:
     name: user.name
@@ -6,6 +7,7 @@
     value: ansible
 
 - name: Set user email
+  become_user: "{{ base_user }}"
   tags: always, customization, git
   git_config:
     name: user.email

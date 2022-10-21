@@ -1,0 +1,9 @@
+base_user: ansible
+
+ohmyzsh_plugin_base_url: "https://github.com/zsh-users/" 
+ohmyzsh_plugin_dir: "/home/{{ base_user }}/.oh-my-zsh/custom/plugins/"
+ohmyzsh_plugins:
+  - repo_url: "{{ ohmyzsh_plugin_base_url }}/zsh-syntax-highlighting.git"
+    dest: "{{ ohmyzsh_plugin_dir }}/zsh-syntax-highlighting"
+  - repo_url: "{{ ohmyzsh_plugin_base_url }}/zsh-autosuggestions.git"
+    dest: "{{ ohmyzsh_plugin_dir }}/zsh-autosuggestions"

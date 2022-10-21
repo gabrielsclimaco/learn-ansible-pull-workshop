@@ -1,0 +1,3 @@
+cron_user: autoupdate
+
+repo_url: https://github.com/gabrielsclimaco/learn-ansible-pull-workshop.git

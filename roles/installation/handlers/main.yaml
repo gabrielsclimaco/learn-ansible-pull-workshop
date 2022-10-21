@@ -1,0 +1,6 @@
+- name: Start docker service
+  tags: always, installation, docker
+  service:
+    name: "{{ docker_service }}"
+    state: started
+    enabled: true

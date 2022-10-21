@@ -1,0 +1,11 @@
+- name: Clone NVM repo
+  tags: always, installation, node
+  git:
+    repo: "{{ nvm_repo_url }}"
+    dest: "{{ nvm_path }}"
+
+- name: Install node and set version
+  tags: always, installation, node
+  shell: "source {{ nvm_path }}/nvm.sh && nvm install {{ node_version }}" 
+  args:
+    executable: /bin/bash

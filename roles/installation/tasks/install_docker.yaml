@@ -1,0 +1,32 @@
+- name: Install prereqisites for docker
+  tags: always, installation, docker
+  apt:
+    update_cache: true
+    name: "{{ docker_prerequiste_packages }}"
+
+- name: Add apt key for docker
+  tags: always, installation, docker
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add repository for docker
+  tags: always, installation, docker
+  apt_repository:
+    repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+
+- name: Install docker packages
+  tags: always, installation, docker
+  apt:
+    update_cache: true
+    name: "{{ docker_packages }}"
+    state: present
+  notify: Start docker service
+
+- name: adding existing user '{{ user }}' to group sudo
+  tags: always, installation, docker
+  user:
+    name: "{{ docker_user }}"
+    groups: "{{ docker_group }}"
+    append: yes

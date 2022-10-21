@@ -1,0 +1,21 @@
+- name: Copy wallpaper file
+  tags: always, customization, wallpaper
+  copy:
+    src: files/wallpaper.jpg
+    dest: /usr/share/backgrounds/ansible-wallpaper.jpg
+    owner: root
+    group: root
+
+- name: set wallpaper
+  become_user: "{{ base_user }}"
+  tags: always, customization, wallpaper
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file:///usr/share/backgrounds/ansible-wallpaper.jpg'"
+
+- name: set wallpaper position
+  become_user: "{{ base_user }}"
+  tags: always, customization, wallpaper
+  dconf:
+    key: "/org/gnome/desktop/background/picture-options"
+    value: "'zoom'"

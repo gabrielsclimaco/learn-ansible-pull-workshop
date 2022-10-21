@@ -1,0 +1,5 @@
+- include_tasks: ohmyzsh.yaml
+
+- include_tasks: git.yaml
+
+- include_tasks: wallpaper.yaml

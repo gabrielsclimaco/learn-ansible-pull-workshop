@@ -1,0 +1,13 @@
+- name: Set user name
+  tags: always, customization, git
+  git_config:
+    name: user.name
+    scope: global
+    value: ansible
+
+- name: Set user email
+  tags: always, customization, git
+  git_config:
+    name: user.email
+    scope: global
+    value: ansible@zrp.com.br

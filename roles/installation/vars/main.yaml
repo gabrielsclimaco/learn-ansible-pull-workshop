@@ -1,0 +1,33 @@
+base_user: ansible
+base_packages:
+  - ack
+  - copyq
+  - curl
+  - flameshot
+  - htop
+  - neofetch
+  - python3-pip
+  - python3-psutil
+  - tmux
+  - vim
+  - vlc
+  - xclip
+  - zsh
+
+docker_prerequiste_packages:
+  - ca-certificates
+  - curl
+  - gnupg
+  - lsb-release
+docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-compose-plugin
+docker_service: docker
+docker_user: "{{ base_user }}"
+docker_group: docker
+
+nvm_repo_url: https://github.com/creationix/nvm.git
+nvm_path: "/home/{{ base_user }}/.nvm"
+node_version: 16

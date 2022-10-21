@@ -1,0 +1,19 @@
+- name: Add apt key for chrome
+  tags: always, installation, chrome
+  apt_key:
+    url: https://dl-ssl.google.com/linux/linux_signing_key.pub
+    state: present
+
+- name: Add repository for chrome
+  tags: always, installation, chrome
+  apt_repository:
+    repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+    filename: google-chrome
+    state: present
+
+- name: Install chrome package
+  tags: always, installation, chrome
+  apt:
+    update_cache: true
+    name: google-chrome-stable
+    state: present

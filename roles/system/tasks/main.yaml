@@ -1,0 +1,28 @@
+- name: Add autoupdate user
+  tags: always, system, cron
+  user:
+    name: "{{ cron_user }}"
+    system: yes
+
+- name: set up sudo for ansible user
+  tags: always, system, cron
+  template:
+    src: sudoers.j2
+    dest: "/etc/sudoers.d/{{ cron_user }}"
+    owner: root
+    group: root
+    mode: 0440
+
+- name: add ansible-pull cron job
+  tags: always, system, cron
+  cron:
+    name: ansible auto-provision
+    user: "{{ cron_user }}"
+    minute: "*/10"
+    job: "ansible-pull -o -U {{ repo_url }}"
+
+- name: Remove orphan packages
+  tags: always, system, cleanup
+  apt:
+    autoclean: yes
+  changed_when: false

@@ -1,0 +1,12 @@
+- name: Add alacritty ppa
+  tags: always, installation, alacritty
+  apt_repository:
+      repo: 'ppa:aslatter/ppa'
+      state: present
+
+- name: Install alacritty
+  tags: always, installation, alacritty
+  apt:
+    update_cache: true
+    name: alacritty
+    state: present

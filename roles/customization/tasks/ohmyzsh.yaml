@@ -1,0 +1,29 @@
+- name: Install oh my zsh from script
+  become_user: "{{ base_user }}"
+  tags: always, customization, ohmyzsh
+  shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  args:
+    creates: "/home/{{ base_user }}/.oh-my-zsh"
+
+- name: Change user shell to zsh 
+  tags: always, customization, ohmyzsh
+  user:
+    name: "{{ base_user }}"
+    shell: /usr/bin/zsh
+
+- name: Clone plugin repos
+  become_user: "{{ base_user }}"
+  tags: always, customization, ohmyzsh
+  git:
+    repo: "{{ item.repo_url }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ ohmyzsh_plugins }}"
+
+- name: Copy .zshrc file to user home folder 
+  tags: always, customization, ohmyzsh
+  copy:
+    src: zshrc
+    dest: "/home/{{ base_user }}/.zshrc"
+    owner: "{{ base_user }}"
+    group: "{{ base_user }}"
+    mode: 0644

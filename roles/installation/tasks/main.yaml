@@ -1,0 +1,11 @@
+- include_tasks: base_packages.yaml
+
+- include_tasks: install_alacritty.yaml
+
+- include_tasks: install_chrome.yaml
+
+- include_tasks: install_vscode.yaml
+
+- include_tasks: install_docker.yaml
+
+- include_tasks: install_node.yaml

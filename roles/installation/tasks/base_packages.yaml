@@ -1,0 +1,6 @@
+- name: Install base packages
+  tags: always, installation, base_packages
+  apt:
+    update_cache: true
+    name: "{{ base_packages }}"
+    state: present

@@ -24,7 +24,7 @@
     state: present
   notify: Start docker service
 
-- name: adding existing user '{{ user }}' to group sudo
+- name: adding existing user to group docker
   tags: always, installation, docker
   user:
     name: "{{ docker_user }}"
